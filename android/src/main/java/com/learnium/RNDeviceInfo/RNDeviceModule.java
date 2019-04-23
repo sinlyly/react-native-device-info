@@ -399,6 +399,7 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
     constants.put("totalDiskCapacity", this.getTotalDiskCapacity());
     constants.put("freeDiskStorage", this.getFreeDiskStorage());
     constants.put("installReferrer", this.getInstallReferrer());
+    constants.put("isNotchScreen",this.isNotchScreen());
 
     if (reactContext != null &&
          (reactContext.checkCallingOrSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED ||
@@ -424,4 +425,15 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
     }
     return constants;
   }
+  
+  /**
+   * 判断是否具有刘海屏
+   * @return
+   */
+  @ReactMethod
+  private Boolean isNotchScreen(){
+    return FullScreenUtils.hasNotchScreen(this.getCurrentActivity());
+  }
+  
+  
 }
